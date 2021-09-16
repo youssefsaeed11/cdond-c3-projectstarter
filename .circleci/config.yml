@@ -48,7 +48,6 @@ jobs:
     steps:
       - checkout
       - run: npm i --prefix frontend
-      - run: npm run lint --prefix frontend
       - persist_to_workspace:
           root: ~/
           paths:

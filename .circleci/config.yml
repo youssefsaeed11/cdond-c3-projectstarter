@@ -12,9 +12,9 @@ commands:
           when: on_fail
           command: |
             echo "Destroying environment: <<parameters.workflow_id>> "
-            aws cloudformation delete-stack --stack-name udapeople-backend-prod-<<parameters.workflow_id>>
+            aws cloudformation delete-stack --stack-name udapeople-backend-prod-<<parameters.workflow_id>> --region us-east-1
             aws s3 rm s3://udapeople-prod-<<parameters.workflow_id>> --recursive
-            aws cloudformation delete-stack --stack-name udapeople-frontend-prod-<<parameters.workflow_id>>
+            aws cloudformation delete-stack --stack-name udapeople-frontend-prod-<<parameters.workflow_id>> --region us-east-1
 
   undo_migrations:
     description: Revert the last migration if successfully run in the current workflow.
@@ -99,7 +99,8 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/cloudformation/backend_infrastructure.yml \
               --parameter-overrides ID="prod-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --stack-name udapeople-backend-prod-${CIRCLE_WORKFLOW_ID:0:7}
+              --stack-name udapeople-backend-prod-${CIRCLE_WORKFLOW_ID:0:7} \
+              --region us-east-1
       - run:
           name: Save backend URL and IP (for ansible)
           command: |
@@ -132,7 +133,8 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/cloudformation/frontend_infrastructure.yml \
               --parameter-overrides ID="prod-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --stack-name udapeople-frontend-prod-${CIRCLE_WORKFLOW_ID:0:7}
+              --stack-name udapeople-frontend-prod-${CIRCLE_WORKFLOW_ID:0:7} \
+              --region us-east-1
       - destroy_environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 

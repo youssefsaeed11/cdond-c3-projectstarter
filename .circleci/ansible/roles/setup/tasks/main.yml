@@ -10,6 +10,8 @@
 - name: "upgrade packages"
   apt:
     upgrade: yes
+  async: 1000
+  delay: 60
 
 - name: Wait 300 seconds, but only start checking after 60 seconds
   wait_for_connection:
@@ -28,6 +30,8 @@
 - name: install node
   shell: |
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash - && sudo apt-get install -y nodejs
+  async: 1000
+  delay: 60
 
 # - name: Wait 300 seconds, but only start checking after 60 seconds
 #   wait_for_connection:
@@ -39,6 +43,8 @@
     name: [ "zip", "unzip" ]
     state: latest
     update_cache: yes
+  async: 1000
+  delay: 60
 
 # - name: Wait 300 seconds, but only start checking after 60 seconds
 #   wait_for_connection:
@@ -51,5 +57,6 @@
     global: yes
     production: yes
     state: present
-
+  async: 1000
+  delay: 60
 

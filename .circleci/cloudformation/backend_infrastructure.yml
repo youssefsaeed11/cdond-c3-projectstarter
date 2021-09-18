@@ -28,7 +28,7 @@ Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: t2.medium
+      InstanceType: t2.xlarge
       SecurityGroups:
         - Ref: InstanceSecurityGroup
       KeyName: new-key

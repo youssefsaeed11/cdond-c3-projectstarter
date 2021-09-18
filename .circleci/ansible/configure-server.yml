@@ -11,7 +11,7 @@
 
   pre_tasks:
     - name: "wait 600 seconds for target connection to become reachable/usable."
-      local_action: wait_for host={{ ansible_fqdn }} port=22 delay=120 timeout=900 state=started
+      local_action: wait_for host={{ hostvars['all'] }} port=22 delay=120 timeout=500 state=started
 
     - name: "install python for Ansible."
       # Your code here

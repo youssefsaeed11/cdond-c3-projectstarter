@@ -190,7 +190,7 @@ jobs:
             mv dist.zip ~/project/.circleci/ansible/roles/deploy_backend/files/
           no_output_timeout: 30m
       - add_ssh_keys:
-          fingerprints: [ "c8:74:5e:9c:5f:b0:d6:68:27:22:d5:1f:39:a5:a6:a5" ]
+          fingerprints: [ "93:48:d5:5a:09:41:5b:52:8d:61:7a:81:38:e3:8f:99" ]
       - run:
           name: Setup EC2 instance & copy compiled backend to the EC2 instance
           command: |

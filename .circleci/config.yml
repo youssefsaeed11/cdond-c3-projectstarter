@@ -176,6 +176,7 @@ jobs:
           command: |
             apk add --update curl nodejs npm ansible zip
             pip install awscli
+          no_output_timeout: 30m
       - run:
           name: Build backend app
           command: |
@@ -187,6 +188,7 @@ jobs:
             zip -rq dist.zip *
             mkdir -p ~/project/.circleci/ansible/roles/deploy_backend/files/
             mv dist.zip ~/project/.circleci/ansible/roles/deploy_backend/files/
+          no_output_timeout: 30m
       - add_ssh_keys:
           fingerprints: [ "c8:74:5e:9c:5f:b0:d6:68:27:22:d5:1f:39:a5:a6:a5" ]
       - run:
@@ -196,6 +198,7 @@ jobs:
             cd ~/project/backend
             ansible-galaxy install weareinteractive.environment
             ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ~/project/.circleci/ansible/inventory.txt ~/project/.circleci/ansible/playbook.yml
+          no_output_timeout: 30m
       - destroy_environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
       - undo_migrations

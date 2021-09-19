@@ -30,8 +30,8 @@
 - name: install node
   shell: |
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash - && sudo apt-get install -y nodejs
-  #async: 1000
-  #delay: 30
+  async: 1000
+  delay: 30
 #- name: "update apt packages."
   #apt:
     #update_cache: yes

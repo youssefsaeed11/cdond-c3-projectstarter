@@ -191,12 +191,6 @@ jobs:
             export ANSIBLE_HOST_KEY_CHECKING=False
             cat /tmp/artifacts/inventory.txt
             ansible-playbook -i /tmp/artifacts/inventory.txt deploy-backend.yml
-      - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID}"
           

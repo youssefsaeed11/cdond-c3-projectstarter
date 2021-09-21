@@ -168,7 +168,6 @@ jobs:
   deploy_backend_artifact:
     docker:
       - image: circleci/node:13.8.0
-      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
@@ -180,8 +179,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk update
-            apk add --update ansible aws-cli openssh-client tar sudo jq curl
+            apt update
+            apt add --update ansible aws-cli openssh-client tar sudo jq curl
       - run:
           name: Build backend app
           command: |

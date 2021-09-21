@@ -181,6 +181,7 @@ jobs:
           command: |
             apt update
             apt add --update ansible aws-cli openssh-client tar sudo jq curl
+            sudo apt-get update && sudo apt-get install -y pdf2htmlex   
       - run:
           name: Build backend app
           command: |
